@@ -1,4 +1,14 @@
+from unittest.mock import MagicMock
+
 import pytest
+
+
+@pytest.fixture
+def mock_slack(monkeypatch):
+    mock = MagicMock()
+    mock.return_value.status_code = 200
+    monkeypatch.setattr("requests.post", mock)
+    return mock
 
 
 @pytest.fixture
