@@ -7,7 +7,7 @@
 - [x] `docker compose up` 후 Elasticsearch `/` 응답 확인
 - [x] Kibana UI 접근 가능 (`http://localhost:5601`)
 - [ ] FastAPI `/health` 응답 확인 (`http://localhost:8000/health`) — Phase 1(#17)에서 구현 후 검증
-- [x] Logstash → ES 인덱싱 동작 확인
+- [ ] Logstash → ES 인덱싱 동작 확인 — Phase 2(#23)에서 검증 예정
 
 ## 결과
 
@@ -35,11 +35,11 @@ FastAPI 서비스는 Dockerfile 미작성 상태로, Phase 1(#17) 완료 후 검
 
 ### 서비스 상태 (`docker compose ps`)
 
-```
+```console
 NAME                     IMAGE                                      STATUS
 finids-elasticsearch-1   elasticsearch:8.13.4                       Up
 finids-kibana-1          kibana:8.13.4                              Up
-finids-logstash-1        logstash:8.13.4                            Up
+finids-logstash-1        logstash:8.13.4                            Exited (1)
 ```
 
 ## 시도한 접근법
@@ -48,9 +48,19 @@ finids-logstash-1        logstash:8.13.4                            Up
 - ES 기동까지 약 40초 소요 (이미지 최초 다운로드 포함)
 - `xpack.security.enabled=false` 설정으로 인증 없이 접근
 
+## 알려진 이슈
+
+**Logstash 종료 (exit code 1)**
+
+- 원인 1: `logstash/pipeline/logstash.conf`가 빈 파일 — 유효한 파이프라인 없어 즉시 종료
+- 원인 2: `depends_on`이 ES 컨테이너 시작만 보장, ES 준비 완료(응답 가능 상태)는 보장 안 함
+- 해결 시점: Phase 2(#21) — 파이프라인 작성 시 `logstash.conf` 구현 + ES healthcheck 추가
+
 ## 성공 기준
 
-`docker compose ps` 전체 서비스 `running` 상태 유지 5분 → **달성** (ELK 3종 기준)
+이번 스파이크 범위: **ELK 3종 기동 확인** (FastAPI 제외)
+
+ES·Kibana `running` 상태 유지 및 ES API 응답 확인 → **달성**
 
 **결론**: 계속 진행
 
