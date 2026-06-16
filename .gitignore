@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# 가상환경
+.venv/
+venv/
+env/
+
+# 환경변수
+.env
+.env.*
+!.env.example
+
+# 테스트 / 커버리지
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# 린터 캐시
+.ruff_cache/
+.mypy_cache/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 로그
+*.log
+logs/
+
+# Docker 볼륨 데이터 (로컬)
+esdata/

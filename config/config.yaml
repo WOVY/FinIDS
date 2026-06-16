@@ -1,0 +1,34 @@
+elasticsearch:
+  host: "http://elasticsearch:9200"
+  index: "finids-logs"
+
+detection:
+  credential_stuffing:
+    window_minutes: 10
+    threshold_accounts: 10
+  night_transfer:
+    start_hour: 0
+    end_hour: 5
+    min_amount: 3_000_000
+  multi_account:
+    window_minutes: 30
+    threshold_accounts: 4
+  abnormal_ua:
+    patterns:
+      - "python-requests"
+      - "curl"
+      - "wget"
+      - "Go-http-client"
+  split_transfer:
+    window_minutes: 60
+    threshold_count: 5
+    near_limit_ratio: 0.9
+
+llm:
+  model: "llama3.1:8b"
+  base_url: "http://host.docker.internal:11434"
+  timeout_seconds: 30
+
+alerting:
+  slack_webhook_url: ""
+  gmail_from: ""
