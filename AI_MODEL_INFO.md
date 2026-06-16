@@ -12,7 +12,7 @@
 | 모델 ID | `meta-llama/Meta-Llama-3.1-8B-Instruct` |
 | 제공처 | Meta AI |
 | 실행 환경 | Ollama (로컬 추론, 인터넷 미전송) |
-| Ollama 버전 | 0.9.x (고정 권장: `ollama --version`으로 확인) |
+| Ollama 버전 | 추후 기재 예정 (`ollama --version`으로 확인 후 고정, 스파이크 #6 완료 시) |
 
 ---
 
@@ -21,9 +21,8 @@
 **Meta Llama 3.1 Community License Agreement**
 
 - 원문: https://llama.meta.com/llama3_1/license/
-- 비상업적 연구·교육 목적 사용 허용
-- **상업적 이용**: 월간 활성 사용자(MAU) 7억 명 미만이면 허용 (본 프로젝트 해당)
-- **저작자 표시**: 파생 작업물에 "Built with Meta Llama 3.1" 명시 필요 (README에 기재)
+- **상업적 이용**: MAU 7억 명 미만이면 허용, 이상이면 Meta와 별도 계약 필요 (본 프로젝트 해당)
+- **저작자 표시**: 파생 작업물에 "Built with Llama" 명시 및 원본 Notice 파일 보존 필요 (README에 기재)
 - **금지 사항**: Meta의 허가 없이 다른 AI 모델 학습에 사용 불가, Meta 제품·서비스 흉내 불가
 
 ---
