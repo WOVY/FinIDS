@@ -31,5 +31,7 @@ jobs:
           path: ~/.cache/pip
           key: pip-${{ hashFiles('requirements-dev.txt') }}
           restore-keys: pip-
-      - run: pip install -e . -r requirements-dev.txt
+      - run: pip install -r requirements-dev.txt
       - run: pytest
+        env:
+          PYTHONPATH: ${{ github.workspace }}
