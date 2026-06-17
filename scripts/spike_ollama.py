@@ -11,6 +11,7 @@ PoC 전용 1회성 스크립트로 pytest 수집 대상(`tests/`) 밖에 둔다.
 import sys
 import time
 
+import httpx
 from langchain_core.prompts import PromptTemplate
 from langchain_ollama import OllamaLLM
 
@@ -78,10 +79,17 @@ def check_offline_handling() -> None:
     try:
         llm.invoke("ping")
         print("예외가 발생하지 않음 (예상과 다름)")
-    except Exception as exc:
+    except httpx.TransportError as exc:
         print(f"예외 발생 확인: {type(exc).__name__}: {exc}")
 
 
 if __name__ == "__main__":
-    measure_response_times()
-    check_offline_handling()
+    try:
+        measure_response_times()
+    except Exception as exc:
+        print(f"measure_response_times 실패: {type(exc).__name__}: {exc}")
+
+    try:
+        check_offline_handling()
+    except Exception as exc:
+        print(f"check_offline_handling 실패: {type(exc).__name__}: {exc}")
