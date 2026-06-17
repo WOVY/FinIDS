@@ -12,7 +12,7 @@
 | 모델 ID | `meta-llama/Meta-Llama-3.1-8B-Instruct` |
 | 제공처 | Meta AI |
 | 실행 환경 | Ollama (로컬 추론, 인터넷 미전송) |
-| Ollama 버전 | 추후 기재 예정 (`ollama --version`으로 확인 후 고정, 스파이크 #6 완료 시) |
+| Ollama 버전 | 0.30.9 (`ollama --version`, 2026-06-17 확인, 스파이크 #6) |
 
 ---
 
