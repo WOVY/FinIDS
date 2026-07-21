@@ -1,0 +1,18 @@
+{
+  "mappings": {
+    "properties": {
+      "timestamp": { "type": "date" },
+      "ip": { "type": "ip" },
+      "user_id": { "type": "keyword" },
+      "action": { "type": "keyword" },
+      "user_agent": {
+        "type": "text",
+        "fields": {
+          "keyword": { "type": "keyword" }
+        }
+      },
+      "amount": { "type": "long" },
+      "label": { "type": "keyword" }
+    }
+  }
+}
