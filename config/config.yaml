@@ -1,6 +1,11 @@
 elasticsearch:
   host: "http://elasticsearch:9200"
   index: "finids-logs"
+  mapping_file: "config/es_mapping.json"
+
+# Logstash file input과 log_generator 출력 경로 컨벤션 (Phase 2에서 사용)
+logstash:
+  log_path: "data/logs/*.log"
 
 detection:
   credential_stuffing:
