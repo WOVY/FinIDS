@@ -12,6 +12,13 @@ def mock_slack(monkeypatch):
 
 
 @pytest.fixture
+def mock_es_ping(monkeypatch):
+    mock = MagicMock(return_value=True)
+    monkeypatch.setattr("elasticsearch.Elasticsearch.ping", mock)
+    return mock
+
+
+@pytest.fixture
 def sample_normal_log() -> dict:
     return {
         "timestamp": "2026-06-16T10:00:00Z",
