@@ -41,7 +41,7 @@ def generate_normal_logs(n: int, start_time: datetime | None = None) -> list[dic
 def write_logs(logs: list[dict], path: str | Path) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as f:
+    with path.open("a", encoding="utf-8", newline="\n") as f:
         for log in logs:
             f.write(json.dumps(log, ensure_ascii=False) + "\n")
 
