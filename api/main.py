@@ -1,3 +1,4 @@
+import asyncio
 import json
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -5,6 +6,9 @@ from pathlib import Path
 import yaml
 from elasticsearch import Elasticsearch
 from fastapi import FastAPI
+from pydantic import BaseModel
+
+from engine.chain import analyze_alert
 
 CONFIG_PATH = Path(__file__).resolve().parent.parent / "config" / "config.yaml"
 config = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
@@ -37,3 +41,17 @@ def health() -> dict:
     except Exception:
         connected = False
     return {"status": "ok", "elasticsearch": "connected" if connected else "disconnected"}
+
+
+class AlertIn(BaseModel):
+    rule_name: str
+    ip: str
+    user_id: str | None = None
+    triggered_at: str
+    description: str
+    log_count: int = 1
+
+
+@app.post("/analyze")
+async def analyze(alert: AlertIn) -> dict:
+    return await asyncio.to_thread(analyze_alert, alert.model_dump())
