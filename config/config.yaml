@@ -28,6 +28,7 @@ detection:
     window_minutes: 60
     threshold_count: 5
     near_limit_ratio: 0.9
+    transfer_limit: 10_000_000
 
 llm:
   model: "llama3.1:8b"
